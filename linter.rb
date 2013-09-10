@@ -6,9 +6,9 @@ require './replacements'
 require './sentence_checks'
 
 if ARGV.first.nil?
-	Dir.glob("text/**").each do |filename|
-		lint_file filename
-	end
-else
-	lint_file ARGV.first
+	raise "Usage: ruby linter.rb path/to/text"
+end
+
+Dir.glob(File.join("#{ARGV.first}", "**")).each do |filename|
+	lint_file filename
 end
