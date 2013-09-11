@@ -36,3 +36,8 @@ def lint_file filename
 	replace_me(passage, replace_me_words_list).each { |notice| print_notice_with_file filename, notice }
 	sentence_checks(passage, sentence_checks_list).each { |notice| print_notice_with_file filename, notice }
 end
+
+def human_readable_regex regex
+	regex.to_s.gsub("(?-mix:", "").gsub(")", "")
+end
+
