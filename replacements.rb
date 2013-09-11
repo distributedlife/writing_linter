@@ -1,4 +1,5 @@
 # encoding: UTF-8
+require "./common"
 
 def replace_me_words_list
 	words = {}
@@ -19,7 +20,7 @@ def replace_me passage, words
 
 	words.each do |bad, good|
 		if passage.include? bad then
-			notices << "'replace': '#{bad}' with '#{good}'"
+			notices << "replace: '#{bad}' with '#{good}'"
 		end
 	end
 

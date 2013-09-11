@@ -1,4 +1,5 @@
 # encoding: UTF-8
+require './common'
 
 def sentence_checks_list
 	words = {}
@@ -18,7 +19,7 @@ def sentence_checks passage, checks
 	notices = []
 
 	sentences_in(passage).each do |original_sentence|
-	    sentence = remove_punctuation original_sentence.downcase
+	    sentence = original_sentence.downcase
 
 	    checks.each do |check, rule|
 	    	if check.match sentence 

@@ -1,4 +1,7 @@
 # encoding: UTF-8
+require './expensive_words'
+require './replacements'
+require './sentence_checks'
 
 def remove_punctuation word
 	word.split(" ").map {|w| w.gsub(/\W/, '')}.join(" ")

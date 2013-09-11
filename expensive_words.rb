@@ -1,15 +1,18 @@
 # encoding: UTF-8
+require "./common"
 
 def fifty_cent_words_list
+  load_word_list "most_common_1000_words"
+end
+
+def load_word_list filename
 	words = []
 
-	File.open("most_common_1000_words") do |file|
+	File.open(filename) do |file|
 		file.readlines.each { |line| words << line.strip }
 	end
 
-	words.each {|word| word.downcase!}
-
-	words
+	words.map {|word| remove_punctuation(word.downcase)}
 end
 
 def expensive_words passage, words
@@ -19,7 +22,7 @@ def expensive_words passage, words
     word = remove_punctuation word.downcase
 
     unless words.include? word
-      notices << "'expensive': '#{word}'"
+      notices << "expensive: '#{word}'"
     end
   end
 
