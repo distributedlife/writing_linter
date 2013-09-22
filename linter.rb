@@ -1,6 +1,6 @@
 # encoding: UTF-8
 require 'rubygems'
-require './common'
+require './lint_steps'
 
 if ARGV.first.nil?
 	raise "Usage: ruby linter.rb path/to/text"
