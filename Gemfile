@@ -1,2 +1,3 @@
-require 'rubygems'
-require 'awesome_print'
+source 'https://rubygems.org'
+
+gem 'engtagger'

@@ -6,6 +6,7 @@ def words_in passage
 	passage.split(" ")
 end
 
+# TODO:replace this with something so much better.
 def sentences_in passage
 	passage.split(".")
 end
@@ -28,3 +29,6 @@ def human_readable_regex regex
 	regex.to_s.gsub("(?-mix:", "").gsub(")", "")
 end
 
+def first_index_of word, sentence
+	words_in(sentence).index(word)
+end
