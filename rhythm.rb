@@ -1,5 +1,4 @@
-require 'rubygems'
-require 'ap'
+require './common'
 
 def load_dictionary
   dict = {}
@@ -7,31 +6,30 @@ def load_dictionary
   File.open('converted.txt') do |file|
     file.readlines.each do |line|
       parts = line.split(' ')
-      dict[parts.first.downcase] = parts.last
+      dict[parts.first.strip.downcase] = parts.last.strip
     end
   end
 
   dict
 end
 
-dict = load_dictionary
-content = ARGV.first
-
-def parse dict, text
+def get_rhythm dict, text
   parsed = []
 
-  text.split(" ").each do |word|
-    word.downcase!
-
-    parsed << [word, dict[word]]
+  words_in(text).each do |word|
+    cleaned = word.strip.gsub(",","").downcase
+    parsed << {:word => cleaned, :beat => dict[cleaned]}
   end
 
   parsed
 end
 
-parsed = parse dict, content
+def compress_beat words
+  words.map {|word| word[:beat]}.join("")
+end
 
-parsed.each do |word|
-  puts "#{word.first}\t"
-  puts "#{word.last}\t"
+
+passage = ARGV.first
+unless passage.nil?
+  puts compress_beat(get_rhythm(load_dictionary, passage))
 end
