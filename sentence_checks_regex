@@ -1,4 +1,5 @@
 ^of course: Don't start sentences with 'Of course'
 ^naturally: Don't start sentences with 'Naturally'
 ^obviously: Don't start sentences with 'Obviously'
+^clearly: Don't start sentences with 'Clearly'
 ^.*said.*": Start talking and then introduce the speaker

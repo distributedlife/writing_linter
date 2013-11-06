@@ -46,11 +46,11 @@ def tag_parts tagged
 	tagged.split("/")
 end
 
-def looks_passive tagged
+def looks_passive? tagged
 	has_auxiliary_verb(tagged) && has_past_tense(tagged)
 end
 
-def looks_likely_passive sentence
+def looks_likely_passive? sentence
 	likely_passive_phrases.select {|phrase| sentence.downcase.include? phrase }.size > 0
 end
 
@@ -66,7 +66,7 @@ def get_voice sentence
 	tagger = EngTagger.new
 	tagged = tagger.get_readable(sentence)
 
-	if looks_passive(tagged)
+	if looks_passive?(tagged)
 		if sentence.include?("is")
 			return check_is_then_by_pattern(sentence)
 		end
@@ -74,7 +74,7 @@ def get_voice sentence
 		return :passive
 	end
 
-	if looks_likely_passive(sentence)
+	if looks_likely_passive?(sentence)
 		return :likely_passive
 	end
 		
